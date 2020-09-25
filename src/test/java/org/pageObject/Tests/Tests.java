@@ -15,7 +15,7 @@ public class Tests extends BaseTest {
         searchPage = new SearchPage();
         tSearch.set(SearchData.builder()
                 .searchInput("automation")
-                .resultDomain("en.wikipedia.org")
+                .resultDomain("testautomationday.com")
                 .build());
     }
 

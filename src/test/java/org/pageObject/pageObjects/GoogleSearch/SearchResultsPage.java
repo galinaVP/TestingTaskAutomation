@@ -75,24 +75,8 @@ public class SearchResultsPage extends AbstractPage {
                 String.format("No found domain %s on pages till %s", domainExpected, tillPage));
         for (String item : domain) {
             Assert.assertTrue(item.contains(domainExpected),
-                    String.format("Found domain %s on pages till %s", domain.get(0), domainExpected));
+                    String.format("Found domain %s not equals to expected %s", domain.get(0), domainExpected));
         }
         return this;
     }
-
-//    public enum SearchResultOrder {
-//        FIRST("1"),
-//        SECOND("2");
-//
-//        private String name;
-//
-//        Language(String name) {
-//            this.name = name;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return name;
-//        }
-//    }
 }
