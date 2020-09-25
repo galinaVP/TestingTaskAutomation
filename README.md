@@ -4,7 +4,7 @@ Languages, technologies and patterns are used:
 TestNG;
 Allure (for reporting);
 Selenium;
-PageObject pattern;
+PageObject, Builder (Lombok) patterns;
 Java 8.
 
 Features:
