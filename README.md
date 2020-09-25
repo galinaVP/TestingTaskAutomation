@@ -1,17 +1,17 @@
 Testing Task base on search system: https://www.google.com/
 
 Languages, technologies and patterns are used:
-TestNG
-Allure (for reporting)
-Selenium
-PageObject pattern
-Java 8
+TestNG;
+Allure (for reporting);
+Selenium;
+PageObject pattern;
+Java 8.
 
 Features:
-It's possible to run tests from command line
-It's possible to run tests in multithreading mode
-Test results appeared in Allure report
-Each failed step has screenshot in Allure report
+It's possible to run tests from command line;
+It's possible to run tests in multithreading mode;
+Test results appeared in Allure report;
+Each failed step has screenshot in Allure report.
 
 Running Tests from Command Line:
 mvn clean test
