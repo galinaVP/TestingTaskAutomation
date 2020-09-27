@@ -1,18 +1,18 @@
 package org.pageObject.Tests;
 
 import org.pageObject.Helper.SearchData;
-import org.pageObject.pageObjects.GoogleSearch.SearchPage;
+import org.pageObject.pageObjects.GoogleSearch.MainPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Tests extends BaseTest {
 
-    SearchPage searchPage;
+    MainPage mainPage;
     ThreadLocal<SearchData> tSearch = new ThreadLocal<>();
 
     @BeforeMethod
     public void mainPage() {
-        searchPage = new SearchPage();
+        mainPage = new MainPage();
         tSearch.set(SearchData.builder()
                 .searchInput("automation")
                 .resultDomain("testautomationday.com")
@@ -21,7 +21,7 @@ public class Tests extends BaseTest {
 
     @Test
     public void searchWord() {
-        searchPage.setWordToSearch(tSearch.get())
+        mainPage.setWordToSearch(tSearch.get())
                 .clickSearchButton()
                 .checkFirstResultTitleContainsSearchWord(tSearch.get())
                 .openFirstSearchResult()
@@ -30,7 +30,7 @@ public class Tests extends BaseTest {
 
     @Test
     public void searchDomain() {
-        searchPage.setWordToSearch(tSearch.get())
+        mainPage.setWordToSearch(tSearch.get())
                 .clickSearchButton()
                 .checkResultsContainDomainTillPage(tSearch.get(), 5);
     }

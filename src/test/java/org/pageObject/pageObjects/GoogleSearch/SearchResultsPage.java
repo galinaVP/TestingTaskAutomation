@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 
 import static WDM.Driver.getDriver;
 
-public class SearchResultsPage extends AbstractPage {
+public class SearchResultsPage extends MainPage {
     private static final By SEARCH_RESULT_TITLES = By.cssSelector(".g .r h3");
     private static final By SEARCH_RESULT_DOMAINS = By.cssSelector("a cite");
     private static final Button NEXT = new Button(By.xpath("//a[@id='pnnext']"), "Search Results Page -> Next results page button");
 
-    public SearchResultsPage checkFirstResultTitleContainsSearchWord(SearchData searchInput) throws NullPointerException {
+    public SearchResultsPage checkFirstResultTitleContainsSearchWord(SearchData searchInput) {
         String searchWord = searchInput.getSearchInput().toLowerCase();
         String title = getDriver().findElement(SEARCH_RESULT_TITLES).getText().toLowerCase();
 
-        Assert.assertTrue(title.contains(searchWord),
+        Assert.assertTrue(title != null && title.contains(searchWord),
                 String.format("The result's title %s doesn't contain searched word %s", title, searchWord));
         return this;
     }
@@ -55,8 +55,8 @@ public class SearchResultsPage extends AbstractPage {
         Assert.assertTrue(domain.size() > 0,
                 String.format("No found domain %s on pages till %s", domainExpected, tillPage));
         for (String item : domain) {
-            Assert.assertTrue(item.contains(domainExpected),
-                    String.format("Found domain %s not equals to expected %s", domain.get(0), domainExpected));
+            Assert.assertTrue(item != null && item.contains(domainExpected),
+                    String.format("Found domain %s not equals to expected %s", item, domainExpected));
         }
         return this;
     }

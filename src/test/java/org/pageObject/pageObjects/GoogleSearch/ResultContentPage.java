@@ -5,7 +5,7 @@ import org.pageObject.Helper.SearchData;
 import org.testng.Assert;
 import primitives.TextField;
 
-public class ResultContentPage extends AbstractPage {
+public class ResultContentPage {
 
     private static final TextField PAGE_TITLE = new TextField(By.cssSelector("h1"), "Result Content Page -> Title of the content");
 
