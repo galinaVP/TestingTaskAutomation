@@ -8,29 +8,29 @@
 4. PageObject, Builder (Lombok) patterns;
 5. Java 8.
 
-###Features:
-#####It's possible to: 
+### Features:
+##### It's possible to: 
 1. run tests from command line;
 2. run tests in multithreading mode;
-#####Test results appeared in Allure report;
-#####Each failed step has screenshot in Allure report.
+##### Test results appeared in Allure report;
+##### Each failed step has screenshot in Allure report.
 
-####Running Tests from Command Line:
+#### Running Tests from Command Line:
 ```bash
 mvn clean test
 ```
-####Running Tests from Command Line in multithreading mode:
+#### Running Tests from Command Line in multithreading mode:
 ```bash
 mvn clean test -Dthreads=2 
 ```
 (count of the threads, "2 threads" -Dthreads=2 for example)
 
-####Running Tests in browser (by default it's Chrome):
+#### Running Tests in browser (by default it's Chrome):
 ```bash
 mvn clean test -Dbrowser=firefox 
 ```
 
-####Test results in Allure report:
+#### Test results in Allure report:
 ```bash
 mvn allure:serve 
 ```
