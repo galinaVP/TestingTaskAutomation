@@ -23,8 +23,8 @@ public class Tests extends BaseTest {
     public void searchWord() {
         searchPage.setWordToSearch(tSearch.get())
                 .clickSearchButton()
-                .checkResultTitleOnPositionContainsSearchWord(1, tSearch.get())
-                .openSearchResult(1)
+                .checkFirstResultTitleContainsSearchWord(tSearch.get())
+                .openFirstSearchResult()
                 .checkPageTitleContainsSearchWord(tSearch.get());
     }
 

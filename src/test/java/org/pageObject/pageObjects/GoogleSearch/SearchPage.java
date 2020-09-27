@@ -5,8 +5,6 @@ import org.pageObject.Helper.SearchData;
 import primitives.Button;
 import primitives.InputField;
 
-import static WDM.Driver.getDriver;
-
 public class SearchPage extends AbstractPage {
 
     private static final InputField SEARCH_VALUE = new InputField(By.cssSelector("input[role='combobox']"), "Search page -> Search value input field");

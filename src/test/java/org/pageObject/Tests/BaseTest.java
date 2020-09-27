@@ -16,6 +16,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void webDriverManager() {
+
         getDriver().get(URL);
     }
 
@@ -29,6 +30,7 @@ public class BaseTest {
 
     @Attachment(type = "image/png")
     private byte[] screenCapture() {
+
         return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }

@@ -18,37 +18,17 @@ public class SearchResultsPage extends AbstractPage {
     private static final By SEARCH_RESULT_DOMAINS = By.cssSelector("a cite");
     private static final Button NEXT = new Button(By.xpath("//a[@id='pnnext']"), "Search Results Page -> Next results page button");
 
-    public SearchResultsPage checkResultTitleOnPositionContainsSearchWord(int position, SearchData searchInput) {
-        String title = null;
+    public SearchResultsPage checkFirstResultTitleContainsSearchWord(SearchData searchInput) throws NullPointerException {
         String searchWord = searchInput.getSearchInput().toLowerCase();
-
-        List<WebElement> searchResults = getDriver().findElements(SEARCH_RESULT_TITLES);
-        int searchResultsCount = searchResults.size();
-
-        for (int i = 0; i < searchResultsCount; i++) {
-            if (i == position - 1) {
-                title = searchResults.get(i).getText().toLowerCase();
-                break;
-            }
-        }
+        String title = getDriver().findElement(SEARCH_RESULT_TITLES).getText().toLowerCase();
 
         Assert.assertTrue(title.contains(searchWord),
                 String.format("The result's title %s doesn't contain searched word %s", title, searchWord));
         return this;
     }
 
-    public ResultContentPage openSearchResult(int position) {
-        List<WebElement> searchResults = getDriver().findElements(SEARCH_RESULT_TITLES);
-        int searchResultsCount = searchResults.size();
-
-        for (int i = 0; i < searchResultsCount; i++) {
-            if (i == position - 1) {
-                WebElement result = searchResults.get(i);
-                ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(false);", result);
-                result.click();
-                break;
-            }
-        }
+    public ResultContentPage openFirstSearchResult() {
+        getDriver().findElement(SEARCH_RESULT_TITLES).click();
         return new ResultContentPage();
     }
 
@@ -71,6 +51,7 @@ public class SearchResultsPage extends AbstractPage {
         List<String> domain = allPageResults.stream()
                 .filter(s -> s.contains(domainExpected))
                 .collect(Collectors.toList());
+
         Assert.assertTrue(domain.size() > 0,
                 String.format("No found domain %s on pages till %s", domainExpected, tillPage));
         for (String item : domain) {

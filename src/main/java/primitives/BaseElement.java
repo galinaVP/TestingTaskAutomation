@@ -1,6 +1,5 @@
 package primitives;
 
-import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -8,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import static WDM.Driver.getDriver;
 
 public class BaseElement {
-    private By locator;
+    private final By locator;
     protected String description;
-    private static ThreadLocal<WebElement> highlighted = new ThreadLocal<>();
+    private static final ThreadLocal<WebElement> highlighted = new ThreadLocal<>();
 
     public BaseElement(By locator, String description) {
         this.locator = locator;

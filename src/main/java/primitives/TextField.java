@@ -1,7 +1,6 @@
 package primitives;
 
 import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class TextField extends BaseElement {

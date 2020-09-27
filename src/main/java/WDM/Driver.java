@@ -1,20 +1,24 @@
 package WDM;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 public class Driver {
 
-    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal();
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal();
+    protected static Map<DriverManagerType, WebDriverManager> instanceMap = new EnumMap(DriverManagerType.class);
 
     private Driver() {
     }
@@ -49,18 +53,14 @@ public class Driver {
                 operadriver().setup();
                 threadDriver.set(new OperaDriver());
                 break;
-//            case "safari":
-//                WebDriverManager.safaridriver().setup();
-//                threadDriver.set(new SafariDriver());
-//                break;
             default:
                 throw new IllegalArgumentException("Entered browser value is not recognized");
         }
 
         threadDriver.get().manage().window().maximize();
-        threadDriver.get().manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        threadDriver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        threadDriver.get().manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+        threadDriver.get().manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+        threadDriver.get().manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
+        threadDriver.get().manage().timeouts().setScriptTimeout(200, TimeUnit.SECONDS);
     }
 
     public static void killDriver() {
